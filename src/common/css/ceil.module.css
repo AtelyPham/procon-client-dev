@@ -1,0 +1,11 @@
+.ceil {
+  --size: 50px;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--size);
+  height: var(--size);
+  border: 0.5px solid #000;
+  cursor: default;
+}
