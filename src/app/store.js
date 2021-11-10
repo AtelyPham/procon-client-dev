@@ -1,25 +1,17 @@
 import { configureStore } from "@reduxjs/toolkit"
-import actionsReducer from "../features/actions/actionsSlice"
-import agentsReducer from "../features/agents/agentsSlice"
-import currentAgentReducer from "../features/agents/currentAgentSlice"
-import boardReducer from "../features/board/boardSlice"
+import authReducer from "../features/auth/authSlice"
 import counterReducer from "../features/counter/counterSlice"
-// import teamsReducer from "../features/teams/teamsSlice"
-import tilesReducer from "../features/tiles/tilesSlice"
-import turnsReducer from "../features/turns/turnsSlice"
+import matchReducer from "../features/match/matchSlice"
+import matchesReducer from "../features/matches/matchesSlice"
 
-import normalizeAgentDataMiddleware from "../features/middlewares/normalizeAgentDataMiddleware"
+// import normalizeAgentDataMiddleware from "../features/middlewares/normalizeAgentDataMiddleware"
 
 export const store = configureStore({
   reducer: {
+    auth: authReducer,
     counter: counterReducer,
-    board: boardReducer,
-    // teams: teamsReducer,
-    agents: agentsReducer,
-    currentAgent: currentAgentReducer,
-    tiles: tilesReducer,
-    turns: turnsReducer,
-    actions: actionsReducer,
+    match: matchReducer,
+    matches: matchesReducer,
   },
-  middleware: [normalizeAgentDataMiddleware],
+  // middleware: [normalizeAgentDataMiddleware],
 })

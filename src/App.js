@@ -1,17 +1,65 @@
+import "bulma/css/bulma.min.css"
 import React from "react"
-import "./App.css"
+import { Redirect, Route, Switch } from "react-router-dom"
+import { ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+import Header from "./common/components/Header"
+import PrivateRoute from "./common/components/PrivateRoute"
+import NotFound from "./pages/NotFound"
 import Login from "./pages/Login"
-import { Switch, Route } from "react-router-dom"
-const Game = React.lazy(() => import("./pages/Game"))
+
 const DashBoard = React.lazy(() => import("./pages/DashBoard"))
+const Match = React.lazy(() => import("./pages/Match"))
 
 function App() {
   return (
-    <Switch>
-      <Route exact path="/" component={Login} />
-      <Route path="/dashboard" component={DashBoard} />
-      <Route path="/match" component={Game} />
-    </Switch>
+    <>
+      <div className="container is-fuild">
+        <Switch>
+          <Route exact path="/">
+            <Redirect to="/login" />
+          </Route>
+          <Route path="/login" component={Login} />
+          <Route
+            path="/api"
+            render={() => (
+              <>
+                <Header />
+                <h1 className="title">API DOCs Page</h1>
+              </>
+            )}
+          />
+          <PrivateRoute
+            path="/dashboard"
+            render={() => (
+              <>
+                <Header />
+                <DashBoard />
+              </>
+            )}
+          />
+          <PrivateRoute
+            path="/match/:matchId"
+            render={() => (
+              <>
+                <Header />
+                <Match />
+              </>
+            )}
+          />
+          <Route
+            path="*"
+            render={() => (
+              <>
+                <Header />
+                <NotFound />
+              </>
+            )}
+          />
+        </Switch>
+      </div>
+      <ToastContainer />
+    </>
   )
 }
 

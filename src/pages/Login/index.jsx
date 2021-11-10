@@ -1,21 +1,31 @@
 import React from "react"
-import { Link } from "react-router-dom"
+import { Columns, Hero } from "react-bulma-components"
+import Intro from "./Intro"
+import Footer from "./Footer"
+
+const COLUMN_STYLE = {
+  marginTop: "10rem",
+  background: "rgb(247, 247, 247)",
+  borderRadius: "10px",
+}
+const WIDE_SCREEN_SETUP = {
+  size: "8",
+  offset: "2",
+}
 
 const Login = () => {
-  const divStyle = {
-    width: "100vw",
-    height: "100vh",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  }
-
   return (
-    <div style={divStyle}>
-      <Link to="/dashboard">
-        <button className="button is-danger">Login</button>
-      </Link>
-    </div>
+    <Hero size="fullheight">
+      <Columns multiline="true" flexDirection="column">
+        <Columns.Column widescreen={WIDE_SCREEN_SETUP} style={COLUMN_STYLE}>
+          <Intro />
+        </Columns.Column>
+        <Columns.Column widescreen={WIDE_SCREEN_SETUP}>
+          <br />
+          <Footer />
+        </Columns.Column>
+      </Columns>
+    </Hero>
   )
 }
 
